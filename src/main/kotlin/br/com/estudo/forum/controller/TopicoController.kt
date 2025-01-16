@@ -3,31 +3,23 @@ package br.com.estudo.forum.controller
 import br.com.estudo.forum.model.Curso
 import br.com.estudo.forum.model.Topico
 import br.com.estudo.forum.model.Usuario
+import br.com.estudo.forum.services.TopicoService
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import java.util.*
 
 @RestController
 @RequestMapping("/topicos")
-class TopicoController {
+class TopicoController(private val service: TopicoService) {
     @GetMapping
     fun listar(): List<Topico> {
-        val topico = Topico(
-            id = 1,
-            titulo = "Duvidas Kotlin",
-            mensagem = "Variáveis no Kotlin",
-            curso = Curso(
-                id = 1,
-                nome = "Kotlin",
-                categoria = "Programação",
-            ),
-            autor = Usuario(
-                id = 1,
-                nome = "Ana da Silva",
-                email = "teste@teste.com"
-            )
-        )
-        return Arrays.asList(topico, topico, topico)
+        return service.listar()
+    }
+
+    @GetMapping("/{id}")
+    fun buscarPorId(@PathVariable id: Long): Topico {
+        return service.buscarPorId(id)
     }
 }
