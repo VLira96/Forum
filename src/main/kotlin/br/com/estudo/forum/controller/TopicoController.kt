@@ -1,8 +1,7 @@
 package br.com.estudo.forum.controller
 
-import br.com.estudo.forum.model.Curso
+import br.com.estudo.forum.dto.NovoTopicoDTO
 import br.com.estudo.forum.model.Topico
-import br.com.estudo.forum.model.Usuario
 import br.com.estudo.forum.services.TopicoService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import java.util.*
 
 @RestController
 @RequestMapping("/topicos")
@@ -26,7 +24,7 @@ class TopicoController(private val service: TopicoService) {
     }
 
     @PostMapping
-    fun cadastrar(@RequestBody topico: Topico) {
-        service.cadastrar(topico)
+    fun cadastrar(@RequestBody dto: NovoTopicoDTO) {
+        service.cadastrar(dto)
     }
 }
