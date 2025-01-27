@@ -1,12 +1,15 @@
 package br.com.estudo.forum.controller
 
+import br.com.estudo.forum.dto.AtualizacaoTopicoForm
 import br.com.estudo.forum.dto.NovoTopicoForm
 import br.com.estudo.forum.dto.TopicoView
 import br.com.estudo.forum.model.Topico
 import br.com.estudo.forum.services.TopicoService
+import jakarta.validation.Valid
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -25,7 +28,12 @@ class TopicoController(private val service: TopicoService) {
     }
 
     @PostMapping
-    fun cadastrar(@RequestBody dto: NovoTopicoForm) {
-        service.cadastrar(dto)
+    fun cadastrar(@RequestBody @Valid form: NovoTopicoForm) {
+        service.cadastrar(form)
+    }
+
+    @PutMapping
+    fun atualizar(@RequestBody @Valid form: AtualizacaoTopicoForm) {
+
     }
 }
