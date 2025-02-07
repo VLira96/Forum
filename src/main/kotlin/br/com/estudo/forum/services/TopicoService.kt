@@ -19,7 +19,7 @@ class TopicoService(
     private val topicoViewMapper: TopicoViewMapper,
     private val topicoFormMapper: TopicoFormMapper,
     private val notFoundMessage: String = "Topico não encontrado!"
-    ) {
+) {
 
     fun listar(): List<TopicoView> {
         return topicos.stream().map {t -> topicoViewMapper.map(t) }.collect(Collectors.toList())
